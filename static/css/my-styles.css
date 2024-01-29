@@ -1,0 +1,19 @@
+.navbar-bg {
+    background-color: #0a53be !important;
+}
+.brand-image {
+    height: 66px;
+}
+.sub-heading {
+    font-size: 1.5rem;
+    font-weight: 300;
+	text-align:center;
+}
+.content-wrapper {
+    min-height: calc(100vh - 60px);
+}
+.footer {
+    height: 75px;
+    padding: 1.5rem 0;
+    background-color: #0a53be !important;
+}

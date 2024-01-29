@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% set active_page = "contact" %}
+
+{% block title %} Contact {% endblock %}
+
+{% block content %}
+<div class="content-wrapper">
+    <div class="container">
+        <div class="text-center mt-5 mb-5">
+            <h1>Contact</h1>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 offset-2">
+                <div class="card mb-3">
+                    <div class="row g-0">
+                        <div class="col-md-6">
+                            <img src="{{ url_for('static', filename='images/contact.jpg') }}" class="img-fluid" alt="...">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card-body">
+                                <h5 class="card-title">Prof. Prabha Garg</h5>
+                                <p class="card-text">Department of Pharmacoinformatics</p>
+								<p class="card-text">National Insttitute of Pharmaceutical Education and Research (NIPER) </p>
+								<p class="card-text">S.A.S. Nagar, Punjab</p>
+								<p class="card-text">India-160062</p>
+                                <p class="card-text"><b>Email:</b> prabhagarg@niper.ac.in</p>
+                                <p class="card-text"><b>Contact:</b> +91(172)-2292000 Extn.-2016</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

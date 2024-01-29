@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% set active_page = "index" %}
+
+{% block title %}
+  Home
+{% endblock %}
+{% block content %}
+<!-- Page content-->
+<div class="content-wrapper">
+    <div class="container">
+        <div class="text-center mt-5 mb-5">
+            <h1>Welcome to ECiLPSE</h1>
+            <p class="lead sub-heading" >
+                <strong> Enzyme Classification Integrating LSTM and Prot-BERT Sequence Encoding</strong></p>
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="" height="160" class="mt-3">
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <p>
+                    ECiLPSE is a cutting-edge solution that combines Prot-BERT encoding and LSTM modeling for accurate enzyme classification. Enzymes, the molecular catalysts of life, play a pivotal role in various biological processes. With seven main classes—oxidoreductases, transferases, hydrolases, lyases, isomerases, ligases, and translocases—accurate enzyme classification is crucial for understanding their diverse functions. ECiLPSE addresses this need with an impressive prediction accuracy of 98%, making it a reliable choice for researchers seeking precision in enzyme analysis. Trained on a diverse dataset comprising 256,222 enzyme sequences, the model achieves granularity by predicting up to the fourth level of enzyme classification and classifying enzymes into 1991 distinct classes.
+                </p>
+                <p>&nbsp;</p>
+                <h3>ECiLPSE Major Features:</h3>
+                <!---<br/> -->
+				<!---<h4> Usage: </h4> -->
+				<ol type ="A">
+					<li><b>Web version:</b> ECiLPSE web version supports CPU processing and handles up to 20 sequences at a time.</li>
+						<ul>
+							<li><a href="{{ url_for('predict')}}">Predict</a>: This module directs user to our dedicated prediction page, offering two methods for sequence input. Users can opt for copy-pasting sequences in FASTA format into the provided text box or choose to upload a sequence file (sequences.fasta). The user-friendly web interface adeptly processes sequences concurrently, ensuring a smooth experience while delivering accurate and detailed enzyme classifications.</li>
+							<li><a href="{{ url_for('download')}}">Download</a>: This module provides access to the datasets used in this study, comprising sequences meticulously curated from seven distinct enzyme classes from UniProt Database.</li>
+						</ul>
+					<li><b>Standalone version:</b> For larger-scale tasks, consider the standalone version available on GitHub at http://..... with GPU support.</li>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

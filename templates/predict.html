@@ -1,0 +1,193 @@
+{% extends 'base.html' %}
+
+{% set active_page = "predict" %}
+
+{% block title %} Predict {% endblock %}
+
+{% block content %}
+<style>
+    .table-responsive {
+        max-height: 750px;
+    }
+
+    .table-responsive thead, tbody, tfoot, tr, td, th {
+        padding: 10px;
+    }
+</style>
+<div class="content-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="text-center mt-5 mb-5">
+                    <h1>Predict</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <p>
+					ECiLPSE has been meticulously developed for predicting precise enzyme classification. Users can seamlessly 
+					input multiple sequences (upto 20) by either pasting them into the designated text area or uploading a file (<b>.fasta extension</b>). 
+					It is important to note that sequences must adhere to the <b>FASTA format </b>(sample sequences in FASTA format are 
+					given for reference in "Use Example Sequence"). For each submitted sequence, ECiLPSE predicts the enzyme 
+					class along with a corresponding probability score. The results are promptly displayed on the screen for 
+					immediate ana;ysis, and for added convenience, a downloadable link is provided for users to retrieve the results.
+                    For more help please visit Help section
+                </p>
+            </div>
+        </div>
+
+
+        {% if df_result %}
+        <div class="row mt-5" id="result">
+            <div class="col-lg-8 offset-md-2">
+                <div class="card">
+                    <div class="card-body bg-success bg-opacity-25">
+                        <div class="mt-3 text-center">
+                            <a class="btn btn-outline-primary btn-sm" href="{{ url_for('static', filename=result_file) }}" download>
+                                Download Result
+                            </a>
+                        </div>
+                        <div class="m-4"></div>
+                        <div class="p-3 bg-success bg-opacity-25">
+                            <h3 class='text-white'>Result:</h3>
+                            <div class="table-responsive">
+                                {{ df_result|safe }}
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="row mt-5">
+            <div class="col-lg-8 offset-md-2">
+                <div class="card">
+                    <div class="card-body bg-info bg-opacity-25">
+                        <h5 class="card-title">
+                            Enter peptide sequence in FASTA format:
+                            <button type="button" class="btn btn-warning mx-5" onclick="useSampleSequence()">
+                                USE EXAMPLE SEQUENCE
+                            </button>
+                        </h5>
+
+                        {% if errorMessage %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ errorMessage }}
+                        </div>
+                        {% elif successMessage %}
+                        <div class="alert alert-success" role="alert">
+                            {{ successMessage }}
+                        </div>
+                        {% endif %}
+                        <div style="position:relative;">
+                            <form
+                                    action="{{ url_for('prediction')}}"
+                                    method="post"
+                                    enctype="multipart/form-data"
+                                    class=""
+                                    id="predictForm">
+
+                                <div class="mb-3">
+                                    <label for="sequence" class="form-label">Sequence:</label>
+                                    <textarea class="form-control" id="sequence" name="sequence" rows="8"></textarea>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="input_file" class="form-label">OR <b>Upload sequence file: </label>
+                                    <input type="file" class="form-control" id="input_file" name="input_file">
+                                </div>
+                                <div class="mb-3 mt-3">
+                                    <label class="form-label" style="margin-right: 25px">Threshold:</label>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="thresh"
+                                               id="thresh0.9" value="0.9">
+                                        <label class="form-check-label" for="thresh0.9">0.9</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="thresh"
+                                               id="thresh0.8" value="0.8" checked>
+                                        <label class="form-check-label" for="thresh0.8">0.8</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="thresh"
+                                               id="thresh0.7" value="0.7">
+                                        <label class="form-check-label" for="thresh0.7">0.7</label>
+                                    </div>
+                                </div>
+                                <div class="mt-5 text-center d-none" id="spinner">
+                                    <i class="fa fa-spinner fa-spin spin-big fs-1"></i>
+                                </div>
+                                <div class="mt-5">
+                                    <button type="submit" id="btnSubmit" class="btn btn-primary btn-lg w-100">PREDICT
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<script>
+    document.getElementById('predictForm').onsubmit = () => {
+        document.getElementById("btnSubmit").disabled = true;
+        document.getElementById('spinner').classList.remove('d-none');
+    }
+
+    function useSampleSequence() {
+        document.getElementById('sequence').value = '>sp|P62877|RBX1_HUMAN E3 ubiquitin-protein ligase RBX1 OS=Homo sapiens OX=9606 GN=RBX1 PE=1 SV=1\n' +
+            'MAAAMDVDTPSGTNSGAGKKRFEVKKWNAVALWAWDIVVDNCAICRNHIMDLCIECQANQ\n' +
+            'ASATSEECTVAWGVCNHAFHFHCISRWLKTRQVCPLDNREWEFQKYGH\n' +
+            '>sp|Q14166|TTL12_HUMAN Tubulin--tyrosine ligase-like protein 12 OS=Homo sapiens OX=9606 GN=TTLL12 PE=1 SV=2\n' +
+            'MEAERGPERRPAERSSPGQTPEEGAQALAEFAALHGPALRASGVPERYWGRLLHKLEHEV\n' +
+            'FDAGEVFGIMQVEEVEEEEDEAAREVRKQQPNPGNELCYKVIVTRESGLQAAHPNSIFLI\n' +
+            'DHAWTCRVEHARQQLQQVPGLLHRMANLMGIEFHGELPSTEAVALVLEEMWKFNQTYQLA\n' +
+            'HGTAEEKMPVWYIMDEFGSRIQHADVPSFATAPFFYMPQQVAYTLLWPLRDLDTGEEVTR\n' +
+            'DFAYGETDPLIRKCMLLPWAPTDMLDLSSCTPEPPAEHYQAILEENKEKLPLDINPVVHP\n' +
+            'HGHIFKVYTDVQQVASSLTHPRFTLTQSEADADILFNFSHFKDYRKLSQERPGVLLNQFP\n' +
+            'CENLLTVKDCLASIARRAGGPEGPPWLPRTFNLRTELPQFVSYFQQRERWGEDNHWICKP\n' +
+            'WNLARSLDTHVTKSLHSIIRHRESTPKVVSKYIESPVLFLREDVGKVKFDIRYIVLLRSV\n' +
+            'RPLRLFVYDVFWLRFSNRAFALNDLDDYEKHFTVMNYDPDVVLKQVHCEEFIPEFEKQYP\n' +
+            'EFPWTDVQAEIFRAFTELFQVACAKPPPLGLCDYPSSRAMYAVDLMLKWDNGPDGRRVMQ\n' +
+            'PQILEVNFNPDCERACRYHPTFFNDVFSTLFLDQPGGCHVTCLV\n' +
+            '>sp|Q969V5|MUL1_HUMAN Mitochondrial ubiquitin ligase activator of NFKB 1 OS=Homo sapiens OX=9606 GN=MUL1 PE=1 SV=1\n' +
+            'MESGGRPSLCQFILLGTTSVVTAALYSVYRQKARVSQELKGAKKVHLGEDLKSILSEAPG\n' +
+            'KCVPYAVIEGAVRSVKETLNSQFVENCKGVIQRLTLQEHKMVWNRTTHLWNDCSKIIHQR\n' +
+            'TNTVPFDLVPHEDGVDVAVRVLKPLDSVDLGLETVYEKFHPSIQSFTDVIGHYISGERPK\n' +
+            'GIQETEEMLKVGATLTGVGELVLDNNSVRLQPPKQGMQYYLSSQDFDSLLQRQESSVRLW\n' +
+            'KVLALVFGFATCATLFFILRKQYLQRQERLRLKQMQEEFQEHEAQLLSRAKPEDRESLKS\n' +
+            'ACVVCLSSFKSCVFLECGHVCSCTECYRALPEPKKCPICRQAITRVIPLYNS\n' +
+            '>sp|Q9L9C1|PAAK_AROEV Phenylacetate-coenzyme A ligase OS=Aromatoleum evansii OX=59406 GN=paaK PE=1 SV=1\n' +
+            'MPVKTPSPGDLEPIEKASQDELRALQLERLKWSVRHAYENVPHYRKAFDAKGVHPDDLKS\n' +
+            'LADLAKFPFTAKGDLRDNYPFGMFAVPREKVARVHASSGTTGKPTVVGYTLKDIDTWATV\n' +
+            'VARSIRASGGRAGDMVHIAYGYGLFTGGLGAHYGAEKLGCTVVPMSGGQTEKQIQLIQDF\n' +
+            'KPDIIMVTPSYMLTVLDEMERMGIDPHQTSLKVGIFGAEPWTQAMRAAMEARAGIDAVDI\n' +
+            'YGLSEVMGPGVANECIEAKDGPVIWEDHFYPEIIDPHTGEVLPDGSEGELVFTTLTKEAM\n' +
+            'PVIRYRTRDLTRLLPPTARSMRRMAKITGRSDDMLIIRGVNLFPTQVEELICKNPKLAPQ\n' +
+            'YLLEVDKDGHMDTLTVKVEINPEANVGRHPEQKEALAKELQHDIKTFIGVSAKVHVCEPF\n' +
+            'AIERVTIGKAKRVVDRRPKE\n' +
+            '>sp|Q9NX47|MARH5_HUMAN E3 ubiquitin-protein ligase MARCHF5 OS=Homo sapiens OX=9606 GN=MARCHF5 PE=1 SV=1\n' +
+            'MPDQALQQMLDRSCWVCFATDEDDRTAEWVRPCRCRGSTKWVHQACLQRWVDEKQRGNST\n' +
+            'ARVACPQCNAEYLIVFPKLGPVVYVLDLADRLISKACPFAAAGIMVGSIYWTAVTYGAVT\n' +
+            'VMQVVGHKEGLDVMERADPLFLLIGLPTIPVMLILGKMIRWEDYVLRLWRKYSNKLQILN\n' +
+            'SIFPGIGCPVPRIPAEANPLADHVSATRILCGALVFPTIATIVGKLMFSSVNSNLQRTIL\n' +
+            'GGIAFVAIKGAFKVYFKQQQYLRQAHRKILNYPEQEEA\n' +
+            '>sp|Q9Y3I0|RTCB_HUMAN RNA-splicing ligase RtcB homolog OS=Homo sapiens OX=9606 GN=RTCB PE=1 SV=1\n' +
+            'MSRSYNDELQFLEKINKNCWRIKKGFVPNMQVEGVFYVNDALEKLMFEELRNACRGGGVG\n' +
+            'GFLPAMKQIGNVAALPGIVHRSIGLPDVHSGYGFAIGNMAAFDMNDPEAVVSPGGVGFDI\n' +
+            'NCGVRLLRTNLDESDVQPVKEQLAQAMFDHIPVGVGSKGVIPMNAKDLEEALEMGVDWSL\n' +
+            'REGYAWAEDKEHCEEYGRMLQADPNKVSARAKKRGLPQLGTLGAGNHYAEIQVVDEIFNE\n' +
+            'YAAKKMGIDHKGQVCVMIHSGSRGLGHQVATDALVAMEKAMKRDKIIVNDRQLACARIAS\n' +
+            'PEGQDYLKGMAAAGNYAWVNRSSMTFLTRQAFAKVFNTTPDDLDLHVIYDVSHNIAKVEQ\n' +
+            'HVVDGKERTLLVHRKGSTRAFPPHHPLIAVDYQLTGQPVLIGGTMGTCSYVLTGTEQGMT\n' +
+            'ETFGTTCHGAGRALSRAKSRRNLDFQDVLDKLADMGIAIRVASPKLVMEEAPESYKNVTD\n' +
+            'VVNTCHDAGISKKAIKLRPIAVIKG\n'
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% set active_page = "team" %}
+
+{% block title %} Team {% endblock %}
+
+{% block content %}
+<div class="content-wrapper">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="text-center mt-5 mb-5">
+                <h1>ECiLPSE Team</h1>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+            <div class="col-lg-4">
+                <div class="card">
+                    <img src="{{ url_for('static', filename='images/contact.jpg') }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Dr. Anju Sharma</h5>
+                        <p class="card-text">Post-Doctoral Fellow (NPDF-SERB)</p>
+						<p class="card-text">NIPER, S.A.S. Nagar, Punjab</p>
+                        <p class="card-text"><b>Email:</b> anjusharma.online@gmail.com</p>
+                        <!--<p class="card-text">Contact Number: 9876543210</p>  -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card">
+                    <img src="{{ url_for('static', filename='images/contact.jpg') }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Dr. Rajnish Kumar</h5>
+                        <p class="card-text">Post-Doctoral Fellow</p>
+						<p class="card-text">University of Missouri, USA</p>
+                        <p class="card-text"><b>Email: </b>12.rajnish@gmail.com</p>
+                        
+                    </div>
+                </div>
+            </div>
+			 <div class="col-lg-4">
+                <div class="card">
+                    <img src="{{ url_for('static', filename='images/contact.jpg') }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Vineet Diwakar</h5>
+                        <p class="card-text">Doctoral Fellow</p>
+						<p class="card-text">NIPER, S.A.S. Nagar, Punjab</p>
+                        <p class="card-text"><b>Email:</b> vineetdiwakarniper@gmail.com</p>
+                        
+                    </div>
+                </div>
+            </div>
+			 <div class="col-lg-4">
+                <div class="card">
+                    <img src="{{ url_for('static', filename='images/contact.jpg') }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Prof. Prabha Garg</h5>
+                        <p class="card-text">Professor</p>
+						<p class="card-text">NIPER, S.A.S. Nagar, Punjab</p>
+                        <p class="card-text"><b>Email: </b>prabhagarg@niper.ac.in</p>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

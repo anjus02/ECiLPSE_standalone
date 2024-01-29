@@ -1,0 +1,223 @@
+{% extends 'base.html' %}
+
+{% set active_page = "download" %}
+
+{% block title %} Downloads {% endblock %}
+
+{% block content %}
+<div class="content-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="text-center mt-5 mb-5">
+                    <h1>Downloads</h1>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header bg-primary text-center text-white">
+                        <h3>FASTA</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered align-middle">
+                            <thead class="table-info">
+                            <tr>
+                                <th>Dataset</th>
+                                <th>Description</th>
+                                <th>Download</th> <!--- Positive -->
+                                <!-- <th>Negative</th>  -->
+                            </tr>
+                            </thead>
+                            <tbody>
+							<tr>
+                                <td class="text-center">Sample data</td>
+                                <td>
+                                    The sample dataset comprises sequences in the FASTA format, serving as a reference for analysis. 
+                                </td>
+                                <td class="text-center text-success fs-1">
+                                   <a href="{{ url_for('static', filename='data/sequence.fasta') }}" download>
+                                        <i class="fa-solid fa-download fs-1"></i>
+                                    </a>
+								</td>
+								<!--
+                                <td class="text-center text-success fs-1">
+                                   <a href="#" download="{{ url_for('static', filename='images/logo.png') }}">
+                                        <i class="fa-solid fa-download fs-1"></i>
+                                    </a>
+                                </td>
+								--->
+                            </tr>
+							</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>	
+							
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header bg-primary text-center text-white">
+                        <h3>Enzyme Classes</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered align-middle">
+                            <thead class="table-info">
+                            <tr>
+                                <th>Dataset</th>
+                                <th>Description</th>
+                                <th>Download</th> <!--- Positive -->
+                                <!-- <th>Negative</th>  -->
+                            </tr>
+                            </thead>
+                            <tbody>									
+                            <tr>
+                                <td class="text-center">Oxidoreductase</td>
+                                <td>
+                                    Oxidoreductases catalyze biochemical reactions involving electron transfer, playing a crucial role in cellular redox processes and diverse metabolic pathways.
+									The dataset contains ..... sequences belonging to .... subclasses, ...substrates... compiled from UniProt Database.
+                                </td>
+                                <td class="text-center text-success fs-1">
+                                   <a href="{{ url_for('static', filename='data/oxidoreductase.xlsx') }}" download>
+                                        <i class="fa-solid fa-download fs-1"></i>
+                                    </a>
+								</td>
+								<!--
+                                <td class="text-center text-success fs-1">
+                                   <a href="#" download="{{ url_for('static', filename='images/logo.png') }}">
+                                        <i class="fa-solid fa-download fs-1"></i>
+                                    </a>
+                                </td>
+								--->
+                            </tr>
+                             <tr>
+                                <td class="text-center">Transferases</td>
+                                <td>
+                                    Transferases are enzymes responsible for catalyzing the transfer of functional groups, such as methyl, acyl, or phosphoryl groups, between molecules, playing a crucial role in various metabolic pathways.
+									The dataset contains ..... sequences belonging to .... subclasses, ...substrates... compiled from UniProt Database.
+                                </td>
+                                <td class="text-center text-success fs-1">
+                                    <a href="{{ url_for('static', filename='images/logo.png') }}" download>
+                                        <i class="fa-solid fa-download fs-1"></i>
+                                    </a>
+                                </td>
+                                <!--
+                                <td class="text-center text-success fs-1">
+                                   <a href="#" download="{{ url_for('static', filename='images/logo.png') }}">
+                                        <i class="fa-solid fa-download fs-1"></i>
+                                    </a>
+                                </td>
+								--->
+                            </tr>
+							  <tr>
+                                <td class="text-center">Hydrolases</td>
+                                <td>
+                                    Hydrolases catalyze reactions involving the cleavage of chemical bonds through the addition of water molecules, contributing to essential processes such as digestion and cellular metabolism.
+									The dataset contains ..... sequences belonging to .... subclasses, ...substrates... compiled from UniProt Database.
+                                </td>
+                                <td class="text-center text-success fs-1">
+                                    <a href="{{ url_for('static', filename='images/logo.png') }}" download>
+                                        <i class="fa-solid fa-download fs-1"></i>
+                                    </a>
+                                </td>
+                               <!--
+                                <td class="text-center text-success fs-1">
+                                   <a href="#" download="{{ url_for('static', filename='images/logo.png') }}">
+                                        <i class="fa-solid fa-download fs-1"></i>
+                                    </a>
+                                </td>
+								--->
+                            </tr>
+							  <tr>
+                                <td class="text-center">Lyases</td>
+                                <td>
+                                    Lyases facilitate chemical reactions by catalyzing the removal of groups from substrates, resulting in the formation of double bonds or the addition of groups to double bonds.
+									The dataset contains ..... sequences belonging to .... subclasses, ...substrates... compiled from UniProt Database.
+                                </td>
+                                <td class="text-center text-success fs-1">
+                                    <a href="{{ url_for('static', filename='images/logo.png') }}" download>
+                                        <i class="fa-solid fa-download fs-1"></i>
+                                    </a>
+                                </td>
+                               <!--
+                                <td class="text-center text-success fs-1">
+                                   <a href="#" download="{{ url_for('static', filename='images/logo.png') }}">
+                                        <i class="fa-solid fa-download fs-1"></i>
+                                    </a>
+                                </td>
+								--->
+                            </tr>
+							  <tr>
+                                <td class="text-center">Isomerases</td>
+                                <td>
+                                    Isomerases play a pivotal role in catalyzing the rearrangement of molecular structures, facilitating the conversion of isomers and contributing to the overall biochemical diversity within biological systems.
+									The dataset contains ..... sequences belonging to .... subclasses, ...substrates... compiled from UniProt Database.
+                                </td>
+                                <td class="text-center text-success fs-1">
+                                    <a href="{{ url_for('static', filename='images/logo.png') }}" download>
+                                        <i class="fa-solid fa-download fs-1"></i>
+                                    </a>
+                                </td>
+                                <!--
+                                <td class="text-center text-success fs-1">
+                                   <a href="#" download="{{ url_for('static', filename='images/logo.png') }}">
+                                        <i class="fa-solid fa-download fs-1"></i>
+                                    </a>
+                                </td>
+								--->
+                            </tr>
+							  <tr>
+                                <td class="text-center">Ligases</td>
+                                <td>
+                                    Ligases play a crucial role in catalyzing the formation of covalent bonds between molecules, typically involving the synthesis of larger biomolecules.
+									The dataset contains ..... sequences belonging to .... subclasses, ...substrates... compiled from UniProt Database.
+                                </td>
+                                <td class="text-center text-success fs-1">
+                                    <a href="{{ url_for('static', filename='images/logo.png') }}" download>
+                                        <i class="fa-solid fa-download fs-1"></i>
+                                    </a>
+                                </td>
+                               <!--
+                                <td class="text-center text-success fs-1">
+                                   <a href="#" download="{{ url_for('static', filename='images/logo.png') }}">
+                                        <i class="fa-solid fa-download fs-1"></i>
+                                    </a>
+                                </td>
+								--->
+                            </tr>
+							  <tr>
+                                <td class="text-center">Translocases</td>
+                                <td>
+                                    Translocases play a crucial role in cellular transport processes by facilitating the movement of various substances across biological membranes.
+									The dataset contains ..... sequences belonging to .... subclasses, ...substrates... compiled from UniProt Database.
+                                </td>
+                                <td class="text-center text-success fs-1">
+                                    <a href="{{ url_for('static', filename='images/logo.png') }}" download>
+                                        <i class="fa-solid fa-download fs-1"></i>
+                                    </a>
+                                </td>
+                                <!--
+                                <td class="text-center text-success fs-1">
+                                   <a href="#" download="{{ url_for('static', filename='images/logo.png') }}">
+                                        <i class="fa-solid fa-download fs-1"></i>
+                                    </a>
+                                </td>
+								--->
+                            </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+    </div>
+</div>
+{% endblock %}

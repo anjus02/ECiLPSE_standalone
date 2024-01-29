@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% set active_page = "predict" %}
+
+{% block title %} Predict {% endblock %}
+
+{% block content %}
+<div class="content-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="text-center mt-5 mb-5">
+                    <h1>Predict</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <p>
+                    ECiLPSE has been meticulously developed for predicting precise enzyme classification. Users can seamlessly input multiple sequences (upto 20) by either pasting them into the designated text area or uploading a file. It's important to note that sequences must adhere to the FASTA format (Sample sequences in FASTA format are given for reference in "Use Example Sequence"). For each submitted sequence, ECiLPSE predicts the enzyme class along with a corresponding probability score. The results are promptly displayed on the screen for immediate analysis, and for added convenience, a downloadable link is provided for users to retrieve the results.
+                </p>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-lg-8 offset-md-2">
+                <div class="card">
+                    <div class="card-body bg-info bg-opacity-25">
+                        <h5 class="card-title">
+                            Enter sequence in FASTA format:
+                            <button type="button" class="btn btn-warning mx-5">USE EXAMPLE SEQUENCE</button>
+                        </h5>
+
+                        <form action="{{ url_for('prediction')}}" method="post" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label for="sequence" class="form-label">Sequence:</label>
+                                <textarea class="form-control" id="sequence" name="sequence" rows="8"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="input_file" class="form-label">OR <b>Upload sequence file: </b> </label>
+                                <input type="file" class="form-control" id="input_file" name="input_file">
+                            </div>
+                            <div class="mb-3">
+                                <label for="thresh" class="form-label">Threshold:</label>
+                                <input type="text" class="form-control" id="thresh" name="thresh" required>
+                            </div>
+                            <div class="mt-5">
+                                <button type="submit" class="btn btn-primary btn-lg w-100">PREDICT</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% if result_path %}
+        <div class="row mt-5" id="result">
+            <div class="col-lg-8 offset-md-2">
+                <div class="card">
+                    <div class="card-body bg-success bg-opacity-25">
+                        <div class="mt-5">
+                            <a class="btn btn-info btn-sm" href="{{ url_for('predict')}}?result_path={{ result_path }}">Download
+                                Result</a>
+                        </div>
+                        <div class="mt-3 p-3 bg-info">
+                            <h3 class='text-white'>Result:</h3>
+                            <div>
+                                {{ df_result|safe }}
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
