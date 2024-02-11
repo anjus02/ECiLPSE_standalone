@@ -1,6 +1,8 @@
 # ECiLPSE
 
-Enzymes, the molecular catalysts of life, play a pivotal role in various biological processes. With seven main classes—oxidoreductases, transferases, hydrolases, lyases, isomerases, ligases, and translocases—accurate enzyme classification is crucial for understanding their diverse functions. **ECiLPSE** is a novel enzyme classification prediction tool that leverages Prot-BERT encoding scheme and a bidirectional LSTM model.  Trained on a diverse dataset comprising 256,222 enzyme sequences, the model achieves granularity by predicting up to the fourth level of enzyme classification and classifying enzymes into 1991 distinct classes with an impressive prediction accuracy of 98%, making it a reliable choice for researchers seeking precision in enzyme analysis. 
+Enzymes, the molecular catalysts of life, play a pivotal role in various biological processes. With seven main classes—oxidoreductases, transferases, hydrolases, lyases, isomerases, ligases, and translocases—accurate enzyme classification is crucial for understanding their diverse functions. 
+
+**ECiLPSE** is a novel enzyme classification prediction tool that leverages Prot-BERT encoding scheme and a bidirectional LSTM model.  Trained on a diverse dataset comprising 256,222 enzyme sequences, the model achieves granularity by predicting up to the fourth level of enzyme classification and classifying enzymes into 1991 distinct classes with an impressive prediction accuracy of 98%, making it a reliable choice for researchers seeking precision in enzyme analysis. 
 
 ## Contents
 
@@ -34,7 +36,7 @@ file (e.g. ```sequence.fasta```). Remember to give a name or ID to each structur
   python ECiLPSE_standalone.py 
   ```
    The script runs in the current directory.
-   The script will prompt user to enter the path of ```sequence.fasta``` file, followed by the ```threshold``` value
+   The script will prompt user to enter the path of ```sequence.fasta``` file, followed by the ```threshold``` value.
    The output is provided in a comma-separated (result.csv) file format, presenting predictions for one or more (top 3 in the case of multiple classes) main class, subclass, sub-subclass, or substrate class of ECs, along with associated probability scores
   
 > **_NOTE:_** Remember to activate the corresponding conda environment before running the script, if applicable.
