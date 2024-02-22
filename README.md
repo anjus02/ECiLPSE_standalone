@@ -45,7 +45,7 @@ file (e.g. ```sequence.fasta```). Remember to give a name or ID to each structur
 
 If you use **ECiLPSE** in your publication, consider citing the [paper](https://--):
 ```
-@ARTICLE{10.3389/fnins.2022.858126,
+@ARTICLE{###,
 AUTHOR={Sharma, Anju and Kumar, Rajnish and Diwaker, Vineet and Garg, Prabha},   
 TITLE={ECiLPSE: Enzyme classification integrating LSTM and Prot-BERT sequence encoding},      
 JOURNAL={ },      
