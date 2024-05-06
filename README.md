@@ -4,6 +4,8 @@ Enzymes, the molecular catalysts of life, play a pivotal role in various biologi
 
 **ECiLPSE** is a novel enzyme classification prediction tool that leverages Prot-BERT encoding scheme and a bidirectional LSTM model.  Trained on a diverse dataset comprising 256,222 enzyme sequences, the model achieves granularity by predicting up to the fourth level of enzyme classification and classifying enzymes into 1991 distinct classes with an impressive prediction accuracy of 98%, making it a reliable choice for researchers seeking precision in enzyme analysis. 
 
+**ECiLPSE** ``CPU version`` is conveniently accessible through the official website (http://pitools.niper.ac.in/ecilpse). CPU version is specifically designed for users seeking to process up to 20 sequences at a time, with each sequence falling within the length range of 30 to 1,000 amino acids. For larger datasets exceeding the 20-sequence limit, the ``GPU version`` is made available here. 
+
 ## Contents
 
 The files contained in this repository are as follows:
@@ -46,7 +48,7 @@ file (e.g. ```sequence.fasta```). Remember to give a name or ID to each structur
 If you use **ECiLPSE** in your publication, consider citing the [paper](https://--):
 ```
 @ARTICLE{###,
-AUTHOR={Sharma, Anju and Kumar, Rajnish and Diwaker, Vineet and Garg, Prabha},   
+AUTHOR={Sharma, Anju and Kumar, Rajnish and Diwakar, Vineet and Garg, Prabha},   
 TITLE={ECiLPSE: Enzyme classification integrating LSTM and Prot-BERT sequence encoding},      
 JOURNAL={ },      
 VOLUME={ },           
