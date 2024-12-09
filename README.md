@@ -11,7 +11,7 @@ Enzymes, the molecular catalysts of life, play a pivotal role in various biologi
 The files contained in this repository are as follows:
  * ``ECiLPSE_standalone.py``: main script to run predictions
  * ``sequence.fasta``: user input sequences (in FASTA format)
- * ``/model/multilabel_protein_bertmodel.h5``: folder containing ECiLPSE model
+ * ``multilabel_protein_bertmodel.h5``: ECiLPSE model
  * ``EC_labels.csv``: Enzyme classes
  * ``label_code.csv``: Numeric codes of enzyme classes
 
