@@ -14,6 +14,10 @@ The files contained in this repository are as follows:
  * ``multilabel_protein_bertmodel.h5``: ECiLPSE model
  * ``EC_labels.csv``: Enzyme classes
  * ``label_code.csv``: Numeric codes of enzyme classes
+ * ``price.fasta``: Price-149 dataset sequences
+ * ``halogenases.fasta``: Halogenases dataset
+ * ``price_ec.csv``: EC predicted by ECiLPSE for Price-149 dataset
+ * ``halogenases_ec.csv``: EC predicted by ECiLPSE for halogenases dataset
 
 ## Pre-requisite
 
